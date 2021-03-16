@@ -24,7 +24,7 @@ func foo() error {
 }
 
 func bar() error {
-	return errors.Wrap(ErrMyError{"something went wrong"}, "error")
+	return errors.Wrap(ErrMyError{"something went wrong"}, "got an error in bar")
 }
 
 func main() {
