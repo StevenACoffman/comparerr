@@ -7,7 +7,7 @@ a nicely formatted stacktrace is kind of a mess of competing approaches.
 This [this feature comparison](https://github.com/cockroachdb/errors#features) is good overview of the landscape.
 
 I wanted to compare the output of a few different "nicely formatted" approaches.
-+ [jba/errfmt](https://github.com/jba/errfmt]
++ [jba/errfmt](https://github.com/jba/errfmt)
   ```
   {Msg:This is a message Detail:Important detail Err:reading "file"
   	cmd/prog/reader.go:122
