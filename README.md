@@ -43,21 +43,51 @@ I wanted to compare the output of a few different "nicely formatted" approaches.
   ```
 + [cockroachdb/errors](https://github.com/cockroachdb/errors)
   ```
-  error: something went wrong
+  got an error in bar: something went wrong
   (1) attached stack trace
-    -- stack trace:
-    | main.bar
-    | 	/Users/steve/comparerr/cockroachdb-errors/main.go:27
-    | main.main
-    | 	/Users/steve/comparerr/cockroachdb-errors/main.go:37
-    | runtime.main
-    | 	/Users/steve/.asdf/installs/golang/1.14.3/go/src/runtime/proc.go:203
-    | runtime.goexit
-    | 	/Users/steve/.asdf/installs/golang/1.14.3/go/src/runtime/asm_amd64.s:1373
-  Wraps: (2) error
+  -- stack trace:
+  | main.bar
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:28
+  | main.main
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:38
+  | runtime.main
+  | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
+  | runtime.goexit
+  | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
+  Wraps: (2) got an error in bar
   Wraps: (3) something went wrong
   Error types: (1) *withstack.withStack (2) *errutil.withPrefix (3) main.ErrMyError
-  ````
+  ```
++ [pkg/errors](https://github.com/pkg/errors)
+  ```
+  Something went wrong
+  main.init
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:10
+  runtime.doInit
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:5480
+  runtime.main
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:190
+  runtime.goexit
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
+  main.foo
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:24
+  main.main
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:32
+  runtime.main
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
+  runtime.goexit
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
+  something went wrong
+  got an error in bar
+  main.bar
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:28
+  main.main
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:38
+  runtime.main
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
+  runtime.goexit
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
+  ```
 
 You can clone this repo, cd into any of the directories and run `go run main.go` to see an example
 

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/cockroachdb/errors"
+	"github.com/pkg/errors"
 )
 
 // ErrSomethingWentWrong is a sentinel error which can be useful within a single API layer.
