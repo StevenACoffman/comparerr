@@ -43,24 +43,48 @@ I wanted to compare the output of a few different "nicely formatted" approaches.
   ```
 + [cockroachdb/errors](https://github.com/cockroachdb/errors)
   ```
-  got an error in bar: something went wrong
+  Sentinel Something Went Wrong
+  (1) attached stack trace
+  -- stack trace:
+  | main.foo
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:23
+  | main.main
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:31
+  | [...repeated from below...]
+  Wraps: (2) attached stack trace
+  -- stack trace:
+  | main.init
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:10
+  | runtime.doInit
+  | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:5480
+  | runtime.main
+  | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:190
+  | runtime.goexit
+  | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
+  Wraps: (3) Sentinel Something Went Wrong
+  Error types: (1) *withstack.withStack (2) *withstack.withStack (3) *errutil.leafError
+  
+  
+  starting bar
+  
+  got an error in bar: bar something went wrong
   (1) attached stack trace
   -- stack trace:
   | main.bar
-  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:28
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:27
   | main.main
-  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:38
+  | 	/Users/steve/Documents/git/comparerr/cockroachdb-errors/main.go:39
   | runtime.main
   | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
   | runtime.goexit
   | 	/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
   Wraps: (2) got an error in bar
-  Wraps: (3) something went wrong
+  Wraps: (3) bar something went wrong
   Error types: (1) *withstack.withStack (2) *errutil.withPrefix (3) main.ErrMyError
   ```
 + [pkg/errors](https://github.com/pkg/errors)
   ```
-  Something went wrong
+  Sentinel Something Went Wrong
   main.init
   /Users/steve/Documents/git/comparerr/pkg-errors/main.go:10
   runtime.doInit
@@ -70,19 +94,23 @@ I wanted to compare the output of a few different "nicely formatted" approaches.
   runtime.goexit
   /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
   main.foo
-  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:24
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:23
   main.main
-  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:32
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:31
   runtime.main
   /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
   runtime.goexit
   /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
-  something went wrong
+  
+  
+  starting bar
+  
+  bar something went wrong
   got an error in bar
   main.bar
-  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:28
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:27
   main.main
-  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:38
+  /Users/steve/Documents/git/comparerr/pkg-errors/main.go:39
   runtime.main
   /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
   runtime.goexit
@@ -95,5 +123,5 @@ You can clone this repo, cd into any of the directories and run `go run main.go`
 + [jba errfmt output example](https://play.golang.org/p/aYhdnfLSk8g)
 + [emperror output example](https://play.golang.org/p/OUrwpogR8_E)
 + cockroackdb/errors playground times out? Not sure what that is all about.
-+ [pkg/errors](https://play.golang.org/p/iHt_qG6mI2J)
++ [pkg/errors](https://play.golang.org/p/TwKMNrVrqE8)
 

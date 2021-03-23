@@ -7,7 +7,7 @@ import (
 )
 
 // ErrSomethingWentWrong is a sentinel error which can be useful within a single API layer.
-var ErrSomethingWentWrong = errors.New("Something went wrong")
+var ErrSomethingWentWrong = errors.New("Sentinel Something Went Wrong")
 
 // ErrMyError is an error that can be returned from a public API.
 type ErrMyError struct {
@@ -20,12 +20,11 @@ func (e ErrMyError) Error() string {
 
 func foo() error {
 	// Attach stack trace to the sentinel error.
-	errors.WithStack(ErrSomethingWentWrong).Error()
 	return errors.WithStack(ErrSomethingWentWrong)
 }
 
 func bar() error {
-	return errors.Wrap(ErrMyError{"something went wrong"}, "got an error in bar")
+	return errors.Wrap(ErrMyError{"bar something went wrong"}, "got an error in bar")
 }
 
 func main() {
@@ -34,6 +33,8 @@ func main() {
 			fmt.Printf("%+v\n", err)
 		}
 	}
+
+	fmt.Print("\n\nstarting bar\n\n")
 
 	if err := bar(); err != nil {
 		if errors.As(err, &ErrMyError{}) {
