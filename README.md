@@ -95,4 +95,5 @@ You can clone this repo, cd into any of the directories and run `go run main.go`
 + [jba errfmt output example](https://play.golang.org/p/aYhdnfLSk8g)
 + [emperror output example](https://play.golang.org/p/OUrwpogR8_E)
 + cockroackdb/errors playground times out? Not sure what that is all about.
++ [pkg/errors](https://play.golang.org/p/iHt_qG6mI2J)
 

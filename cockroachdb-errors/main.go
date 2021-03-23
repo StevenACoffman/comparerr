@@ -20,7 +20,6 @@ func (e ErrMyError) Error() string {
 
 func foo() error {
 	// Attach stack trace to the sentinel error.
-	errors.WithStack(ErrSomethingWentWrong).Error()
 	return errors.WithStack(ErrSomethingWentWrong)
 }
 
