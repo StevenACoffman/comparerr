@@ -1,12 +1,19 @@
-# comparerr - Compare golang error library output
-
-Compare error output of different libraries
+# comparerr - Comparison golang stacktrace error library output
 
 Golang is great. I mostly love it. However, collecting an error with relevant context and
 a nicely formatted stacktrace is kind of a mess of competing approaches. 
-This [this feature comparison](https://github.com/cockroachdb/errors#features) is good overview of the landscape.
+This [this feature comparison](https://github.com/cockroachdb/errors#features) is a good overview of the landscape.
 
-I wanted to compare the output of a few different "nicely formatted" approaches.
+I wanted to compare the output of a few different "nicely formatted" approaches with two different kinds of wrapped
+errors, Sentinel errors and custom error types.
+
+Some libraries capture the exact state of the stack when an error happens, including every function call. 
+
+Some try to attach relevant contextual information (messages, variables) at strategic places along the call stack,
+keeping stack traces compact and maximally useful.
+
+Some eliminate stacktrace duplication from wrapped errors.
+
 + [jba/errfmt](https://github.com/jba/errfmt)
   ```
   {Msg:This is a message Detail:Important detail Err:reading "file"
@@ -22,24 +29,26 @@ I wanted to compare the output of a few different "nicely formatted" approaches.
   ```
   something went wrong
   main.foo
-  	/tmp/sandbox910738749/prog.go:23
+  /Users/steve/Documents/git/comparerr/emperror/main.go:23
   main.main
-  	/tmp/sandbox910738749/prog.go:31
+  /Users/steve/Documents/git/comparerr/emperror/main.go:31
   runtime.main
-  	/usr/local/go-faketime/src/runtime/proc.go:204
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
   runtime.goexit
-  	/usr/local/go-faketime/src/runtime/asm_amd64.s:1374
-  something went wrong
-  error
-  main.bar
-  	/tmp/sandbox910738749/prog.go:27
-  main.main
-  	/tmp/sandbox910738749/prog.go:37
-  runtime.main
-  	/usr/local/go-faketime/src/runtime/proc.go:204
-  runtime.goexit
-  	/usr/local/go-faketime/src/runtime/asm_amd64.s:1374
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
   
+  starting bar
+  
+  something went wrong
+  got an error in bar
+  main.bar
+  /Users/steve/Documents/git/comparerr/emperror/main.go:27
+  main.main
+  /Users/steve/Documents/git/comparerr/emperror/main.go:39
+  runtime.main
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/proc.go:203
+  runtime.goexit
+  /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373 
   ```
 + [cockroachdb/errors](https://github.com/cockroachdb/errors)
   ```

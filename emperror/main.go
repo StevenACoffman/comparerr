@@ -34,6 +34,8 @@ func main() {
 		}
 	}
 
+	fmt.Print("\n\nstarting bar\n\n")
+
 	if err := bar(); err != nil {
 		if errors.As(err, &ErrMyError{}) {
 			fmt.Printf("%+v\n", err)

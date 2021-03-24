@@ -29,12 +29,14 @@ func bar() error {
 func main() {
 	// check
 	if err := foo(); err != nil {
+	// errors.Cause
 			fmt.Printf("%+v\n", err)
 	}
 
 	fmt.Print("\n\nstarting bar\n\n")
 
 	if err := bar(); err != nil {
+	// no equivalent to errors.As
 			fmt.Printf("%+v\n", err)
 	}
 }
