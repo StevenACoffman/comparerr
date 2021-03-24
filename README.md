@@ -82,6 +82,20 @@ I wanted to compare the output of a few different "nicely formatted" approaches.
   Wraps: (3) bar something went wrong
   Error types: (1) *withstack.withStack (2) *errutil.withPrefix (3) main.ErrMyError
   ```
++ [palantir/stacktrace](https://github.com/palantir/stacktrace)
+  ```
+  foo returned error
+  --- at /Users/steve/Documents/git/comparerr/palantir-err/main.go:22 (foo) ---
+  Caused by: Sentinel Something Went Wrong
+  --- at /Users/steve/Documents/git/comparerr/palantir-err/main.go:9 (init) ---
+  
+  
+  starting bar
+  
+  got an error in bar
+  --- at /Users/steve/Documents/git/comparerr/palantir-err/main.go:26 (bar) ---
+  Caused by: bar something went wrong
+  ```
 + [pkg/errors](https://github.com/pkg/errors)
   ```
   Sentinel Something Went Wrong
@@ -124,4 +138,5 @@ You can clone this repo, cd into any of the directories and run `go run main.go`
 + [emperror output example](https://play.golang.org/p/OUrwpogR8_E)
 + cockroackdb/errors playground times out? Not sure what that is all about.
 + [pkg/errors](https://play.golang.org/p/TwKMNrVrqE8)
++ [palantir/stacktrace](https://play.golang.org/p/YCdTHCXEd0C)
 
