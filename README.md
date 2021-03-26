@@ -139,13 +139,89 @@ Some eliminate stacktrace duplication from wrapped errors.
   runtime.goexit
   /Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/asm_amd64.s:1373
   ```
++ [Panic Parse](https://github.com/maruel/panicparse) creates [detailed HTML reports](./panicparse-err/output.html) as well as rich structures:
+  ```
+  parsedStack stack.Stack{
+      Calls: {
+          {
+              Func: stack.Func{
+                  Complete:   "runtime/debug.Stack",
+                  ImportPath: "runtime/debug",
+                  DirName:    "debug",
+                  Name:       "Stack",
+                  IsExported: true,
+                  IsPkgMain:  false,
+                  _:          struct {}{},
+              },
+              Args: stack.Args{
+                  Values: {
+                      {
+                          Value: 0x12011b9,
+                          Name:  "",
+                          IsPtr: true,
+                          _:     struct {}{},
+                      },
+                      {
+                          Value: 0xb,
+                          Name:  "",
+                          IsPtr: false,
+                          _:     struct {}{},
+                      },
+                      {
+                          Value: 0x1245b40,
+                          Name:  "",
+                          IsPtr: true,
+                          _:     struct {}{},
+                      },
+                  },
+                  Processed: {"0x12011b9", "0xb", "0x1245b40"},
+                  Elided:    false,
+                  _:         struct {}{},
+              },
+              RemoteSrcPath: "/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/debug/stack.go",
+              Line:          24,
+              SrcName:       "stack.go",
+              DirSrc:        "debug/stack.go",
+              LocalSrcPath:  "/Users/steve/.asdf/installs/golang/1.14.15/go/src/runtime/debug/stack.go",
+              RelSrcPath:    "runtime/debug/stack.go",
+              ImportPath:    "runtime/debug",
+              Location:      4,
+              _:             struct {}{},
+          },
+          {
+              Func: stack.Func{
+                  Complete:   "main.main",
+                  ImportPath: "main",
+                  DirName:    "main",
+                  Name:       "main",
+                  IsExported: true,
+                  IsPkgMain:  true,
+                  _:          struct {}{},
+              },
+              Args:          stack.Args{},
+              RemoteSrcPath: "/Users/steve/Documents/git/comparerr/panicparse-err/main.go",
+              Line:          38,
+              SrcName:       "main.go",
+              DirSrc:        "panicparse-err/main.go",
+              LocalSrcPath:  "/Users/steve/Documents/git/comparerr/panicparse-err/main.go",
+              RelSrcPath:    "main.go",
+              ImportPath:    "github.com/StevenACoffman/comparerr/panicparse-err",
+              Location:      1,
+              _:             struct {}{},
+          },
+      },
+      Elided: false,
+      _:      struct {}{},
+  }
+  ```
 
 You can clone this repo, cd into any of the directories and run `go run main.go` to see an example
 
-
+Here are some runnable go playground examples:
 + [jba errfmt output example](https://play.golang.org/p/aYhdnfLSk8g)
 + [emperror output example](https://play.golang.org/p/OUrwpogR8_E)
 + cockroackdb/errors playground times out? Not sure what that is all about.
 + [pkg/errors](https://play.golang.org/p/TwKMNrVrqE8)
 + [palantir/stacktrace](https://play.golang.org/p/YCdTHCXEd0C)
++ [maruel/panicparse](https://play.golang.org/p/uM1236jx1-D)
 
